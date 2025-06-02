@@ -15,10 +15,10 @@ def call(Map config = [:]) {
 
     stage('Push to DockerHub') {
         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-            sh """
+            sh '''
                 echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
                 docker push ${config.imageName}
-            """
+            '''
         }
     }
 }
